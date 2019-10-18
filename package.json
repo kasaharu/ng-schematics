@@ -21,6 +21,7 @@
     "typescript": "~3.5.3"
   },
   "devDependencies": {
-    "@angular-devkit/schematics-cli": "^0.803.12"
+    "@angular-devkit/schematics-cli": "^0.803.12",
+    "prettier": "1.18.2"
   }
 }
