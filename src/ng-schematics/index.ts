@@ -12,7 +12,7 @@ import {
 } from '@angular-devkit/schematics';
 // import { Schema as ClassOptions } from './schema';
 
-export function ngSchematics(options: any): Rule {
+export function generateAdapter(options: any): Rule {
   return (_tree: Tree, _context: SchematicContext) => {
     if (!options.name) {
       throw new SchematicsException('Option (name) is required.');

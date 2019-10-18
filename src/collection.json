@@ -3,7 +3,7 @@
   "schematics": {
     "ng-schematics": {
       "description": "A blank schematic.",
-      "factory": "./ng-schematics/index#ngSchematics"
+      "factory": "./ng-schematics/index#generateAdapter"
     }
   }
 }
