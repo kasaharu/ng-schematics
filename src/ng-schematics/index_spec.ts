@@ -7,8 +7,10 @@ const collectionPath = path.join(__dirname, '../collection.json');
 describe('ng-schematics', () => {
   it('works', () => {
     const runner = new SchematicTestRunner('schematics', collectionPath);
-    const tree = runner.runSchematic('ng-schematics', {}, Tree.empty());
+    const args = { name: 'hello-world' };
+    const tree = runner.runSchematic('ng-schematics', args, Tree.empty());
 
-    expect(tree.files).toEqual([]);
+    const outputFileList = ['/hello-world.adapter.spec.ts', '/hello-world.adapter.ts'];
+    expect(tree.files).toEqual(outputFileList);
   });
 });
