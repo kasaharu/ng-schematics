@@ -1,7 +1,7 @@
 {
-  "name": "ng-schematics",
-  "version": "0.0.0",
-  "description": "A blank schematics",
+  "name": "@kasaharu/ng-schematics",
+  "version": "0.0.1",
+  "description": "Custom schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "generate": "schematics .:adapter --debug false",
@@ -11,7 +11,7 @@
   "keywords": [
     "schematics"
   ],
-  "author": "",
+  "author": "kasaharu",
   "license": "MIT",
   "schematics": "./src/collection.json",
   "dependencies": {
