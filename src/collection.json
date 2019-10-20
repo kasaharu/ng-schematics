@@ -1,8 +1,8 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "ng-schematics": {
-      "description": "A blank schematic.",
+    "adapter": {
+      "description": "Generate adapter.",
       "factory": "./ng-schematics/index#generateAdapter"
     }
   }
