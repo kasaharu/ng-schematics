@@ -3,7 +3,7 @@
   "schematics": {
     "adapter": {
       "description": "Generate adapter.",
-      "factory": "./ng-schematics/index#generateAdapter"
+      "factory": "./adapter/index#generateAdapter"
     }
   }
 }
