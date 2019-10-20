@@ -18,7 +18,7 @@ export function generateAdapter(options: any): Rule {
       throw new SchematicsException('Option (name) is required.');
     }
 
-    const templateSource = apply(url('./files/adapters'), [
+    const templateSource = apply(url('./files'), [
       template({
         ...strings,
         ...options,
