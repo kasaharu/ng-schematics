@@ -4,6 +4,10 @@
     "adapter": {
       "description": "Generate adapter.",
       "factory": "./adapter/index#generateAdapter"
+    },
+    "store": {
+      "description": "Generate store.",
+      "factory": "./store/index#generateStore"
     }
   }
 }
