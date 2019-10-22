@@ -16,7 +16,7 @@
   "license": "MIT",
   "schematics": "./src/collection.json",
   "bin": {
-    "ng-generate": "./bin/index.js"
+    "ng-schematics": "./bin/ng-schematics.js"
   },
   "dependencies": {
     "@angular-devkit/core": "^8.3.12",
