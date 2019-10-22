@@ -1,28 +1,22 @@
-# Getting Started With Schematics
+# ng-schematics
 
-This repository is a basic Schematic implementation that serves as a starting point to create and publish Schematics to NPM.
+このリポジトリは Angular アプリケーション用の Custom Schematics です。
 
-### Testing
+### Setting
 
-To test locally, install `@angular-devkit/schematics-cli` globally and use the `schematics` command line tool. That tool acts the same as the `generate` command of the Angular CLI, but also has a debug mode.
-
-Check the documentation with
 ```bash
-schematics --help
+$ yarn
+```
+
+### Using
+
+```bash
+$ yarn build
+$ yarn generate:store --name "hello-world"
 ```
 
 ### Unit Testing
 
-`npm run test` will run the unit tests, using Jasmine as a runner and test framework.
-
-### Publishing
-
-To publish, simply do:
-
 ```bash
-npm run build
-npm publish
+$ yarn test
 ```
-
-That's it!
- 
