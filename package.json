@@ -15,6 +15,9 @@
   "author": "kasaharu",
   "license": "MIT",
   "schematics": "./src/collection.json",
+  "bin": {
+    "ng-generate": "./bin/index.js"
+  },
   "dependencies": {
     "@angular-devkit/core": "^8.3.12",
     "@angular-devkit/schematics": "^8.3.12",
