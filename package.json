@@ -28,6 +28,7 @@
     "typescript": "~3.5.3"
   },
   "devDependencies": {
+    "@schematics/angular": "^8.3.15",
     "prettier": "1.18.2"
   }
 }
