@@ -10,8 +10,5 @@ if (type !== 'adapter' && type !== 'store') {
   return;
 }
 
-const generatingCommands = { adapter: 'generate:adapter', store: 'generate:store' };
-const scripts = require('../package.json').scripts;
-
-const execCommand = `yarn ${scripts[generatingCommands[type]]} ${options.join(' ')}`;
+const execCommand = `yarn schematics @kasaharu/ng-schematics:${type} ${options.join(' ')}`;
 exec(execCommand);
