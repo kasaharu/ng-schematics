@@ -9,6 +9,7 @@ import {
   mergeWith,
   template,
   url,
+  chain,
 } from '@angular-devkit/schematics';
 // import { Schema as ClassOptions } from './schema';
 
@@ -26,5 +27,17 @@ export function generateStore(options: any): Rule {
     ]);
 
     return branchAndMerge(mergeWith(templateSource));
+  };
+}
+
+export function generateStoreTemp(options: any): Rule {
+  return (_tree: Tree, _context: SchematicContext) => {
+    if (!options.name) {
+      throw new SchematicsException('Option (name) is required.');
+    }
+
+    const templateSource = apply(url('./files'), [template({ ...strings, ...options })]);
+
+    return chain([mergeWith(templateSource)]);
   };
 }
