@@ -6,15 +6,6 @@
       "description": "Generate a service in the project",
       "factory": "./my-service/index#myService",
       "schema": "./my-service/schema.json"
-    },
-    "adapter": {
-      "description": "Generate adapter.",
-      "factory": "./adapter/index#generateAdapter"
-    },
-    "store": {
-      "description": "Generate store.",
-      "factory": "./store/index#generateStore",
-      "schema": "./store/schema.json"
     }
   }
 }

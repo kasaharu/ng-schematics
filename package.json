@@ -4,8 +4,6 @@
   "description": "Custom schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "generate:adapter": "schematics .:adapter --debug false",
-    "generate:store": "schematics .:store --debug false",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "prettier": "prettier --write './**/*.ts'"
   },
