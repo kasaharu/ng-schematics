@@ -6,6 +6,11 @@
       "description": "Generate a service in the project",
       "factory": "./my-service/index#myService",
       "schema": "./my-service/schema.json"
+    },
+    "ngrx-store": {
+      "description": "Generate a store in the project",
+      "factory": "./ngrx-store/index#ngRxStore",
+      "schema": "./ngrx-store/schema.json"
     }
   }
 }
