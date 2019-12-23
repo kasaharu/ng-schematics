@@ -5,7 +5,9 @@ import { Schema as NgRxStoreSchema } from './schema';
 export function ngRxStore(options: NgRxStoreSchema): Rule {
   return (tree: Tree) => {
     // parse workspace string into JSON object
-    const workspace: experimental.workspace.WorkspaceSchema = getWorkspace(tree);
+    const workspace: experimental.workspace.WorkspaceSchema =
+      options.env === 'test' ? getWorkspaceForTestEnvironment() : getWorkspace(tree);
+
     if (!options.project) {
       options.project = workspace.defaultProject;
     }
@@ -53,4 +55,19 @@ function getWorkspace(tree: Tree): experimental.workspace.WorkspaceSchema {
 
   // parse workspace string into JSON object
   return JSON.parse(workspaceContent);
+}
+
+function getWorkspaceForTestEnvironment(): experimental.workspace.WorkspaceSchema {
+  return {
+    projects: {
+      'ng-schematics': {
+        projectType: 'application',
+        sourceRoot: 'src',
+        root: '',
+        prefix: 'app',
+      },
+    },
+    defaultProject: 'ng-schematics',
+    version: 1,
+  };
 }
