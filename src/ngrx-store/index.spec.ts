@@ -52,12 +52,6 @@ describe('store', () => {
   let runner: SchematicTestRunner;
   let tree: UnitTestTree;
 
-  // beforeEach(async () => {
-  //   runner = new SchematicTestRunner('schematics', collectionPath);
-  //   // tree = await runner.runSchematicAsync('workspace', { name: fileName }, tree).toPromise();
-  //   // tree = await runner.runSchematicAsync('application', { name: fileName }, tree).toPromise();
-  // });
-
   beforeEach(() => {
     const args = { name: fileName, env: 'test' };
     console.log(collectionPath);
