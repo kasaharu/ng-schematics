@@ -20,6 +20,10 @@
       "$default": {
         "$source": "projectName"
       }
+    },
+    "env": {
+      "type": "string",
+      "description": "environment"
     }
   },
   "required": ["name"]
