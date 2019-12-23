@@ -4,16 +4,8 @@ import { Schema as NgRxStoreSchema } from './schema';
 
 export function ngRxStore(options: NgRxStoreSchema): Rule {
   return (tree: Tree) => {
-    const workspaceConfig = tree.read('/angular.json');
-    if (!workspaceConfig) {
-      throw new SchematicsException('Could not find Angular workspace configuration');
-    }
-
-    // convert workspace to string
-    const workspaceContent = workspaceConfig.toString();
-
     // parse workspace string into JSON object
-    const workspace: experimental.workspace.WorkspaceSchema = JSON.parse(workspaceContent);
+    const workspace: experimental.workspace.WorkspaceSchema = getWorkspace(tree);
     if (!options.project) {
       options.project = workspace.defaultProject;
     }
@@ -48,4 +40,17 @@ export function ngRxStore(options: NgRxStoreSchema): Rule {
 
     return chain([mergeWith(templateSource)]);
   };
+}
+
+function getWorkspace(tree: Tree): experimental.workspace.WorkspaceSchema {
+  const workspaceConfig = tree.read('/angular.json');
+  if (!workspaceConfig) {
+    throw new SchematicsException('Could not find Angular workspace configuration');
+  }
+
+  // convert workspace to string
+  const workspaceContent = workspaceConfig.toString();
+
+  // parse workspace string into JSON object
+  return JSON.parse(workspaceContent);
 }
