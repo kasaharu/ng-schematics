@@ -2,21 +2,24 @@
 
 このリポジトリは Angular アプリケーション用の Custom Schematics です。
 
-### Setting
+# Use
+
+## Install
 
 ```bash
-$ yarn
+$ yarn add @kasaharu/ng-schematics -D
 ```
 
-### Using
+## Generate NgRx Store by this schematics
+
+- Generate 2 files `src/app/features/store/hello.store.ts` and `src/app/features/store/hello.store.spec.ts`
 
 ```bash
-$ yarn build
-$ yarn generate:store --name "hello-world"
+$ yarn ng-schematics ngrx-store --name features/store/hello
 ```
 
-### Unit Testing
+- If multiple projects,
 
 ```bash
-$ yarn test
+$ yarn ng-schematics ngrx-store --name features/store/hello --project other-app
 ```
