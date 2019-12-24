@@ -1,6 +1,6 @@
 {
   "name": "@kasaharu/ng-schematics",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Custom schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
