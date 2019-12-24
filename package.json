@@ -5,7 +5,9 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "yarn build && jasmine src/**/*.spec.js",
-    "prettier": "prettier --write './**/*.ts'"
+    "prettier": "prettier --write './**/*.ts'",
+    "prepublish": "yarn build",
+    "publish": "npm publish --access=public ./"
   },
   "keywords": [
     "schematics"
