@@ -2,7 +2,7 @@ import { createAction, createReducer, on, union } from '@ngrx/store';
 
 // NOTE: State
 export interface State {
-  <%= camelize(name) %>: any;
+  <%= camelize(name) %>: any | null;
 }
 
 export const initialState: State = {
@@ -12,9 +12,8 @@ export const initialState: State = {
 // NOTE: Actions
 export const save<%= classify(name) %> = createAction('[<%= classify(name) %>] save', (payload: any) => ({ payload }));
 
-const actions = { save<%= classify(name) %> };
+export const actions = { save<%= classify(name) %> };
 const actionsUnion = union(actions);
-export const <%= camelize(name) %>StoreActoins = actions;
 
 // NOTE: Reducer
 const <%= camelize(name) %>Reducer = createReducer(initialState, on(save<%= classify(name) %>, (state, action) => ({ ...state, <%= camelize(name) %>: action.payload })));

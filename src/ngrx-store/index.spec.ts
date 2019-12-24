@@ -12,7 +12,7 @@ const generatedFile = `import { createAction, createReducer, on, union } from '@
 
 // NOTE: State
 export interface State {
-  helloWorld: any;
+  helloWorld: any | null;
 }
 
 export const initialState: State = {
@@ -22,9 +22,8 @@ export const initialState: State = {
 // NOTE: Actions
 export const saveHelloWorld = createAction('[HelloWorld] save', (payload: any) => ({ payload }));
 
-const actions = { saveHelloWorld };
+export const actions = { saveHelloWorld };
 const actionsUnion = union(actions);
-export const helloWorldStoreActoins = actions;
 
 // NOTE: Reducer
 const helloWorldReducer = createReducer(initialState, on(saveHelloWorld, (state, action) => ({ ...state, helloWorld: action.payload })));
@@ -36,26 +35,24 @@ export default function reducer(state: State, action: typeof actionsUnion): Stat
 // NOTE: Selectors
 export const featureName = 'helloWorld';`;
 
-const generatedSpecFile = `import reducer, { helloWorldStoreActoins, State } from './hello-world.store';
+const generatedSpecFile = `import reducer, { actions, State } from './hello-world.store';
 
 describe('helloWorld reducer', () => {
   it('action type : saveHelloWorld', () => {
     const state: State = { helloWorld: null };
     const updatedState = null;
-    const result = reducer(state, helloWorldStoreActions.saveHelloWorld({ helloWorld: updatedState }));
+    const result = reducer(state, actions.saveHelloWorld({ helloWorld: updatedState }));
 
     expect(result).toEqual({ helloWorld: updatedState });
   });
 });`;
 
-describe('store', () => {
+describe('ngrx-store', () => {
   let runner: SchematicTestRunner;
   let tree: UnitTestTree;
 
   beforeEach(() => {
     const args = { name: fileName, env: 'test' };
-    console.log(collectionPath);
-
     runner = new SchematicTestRunner('schematics', collectionPath);
     tree = runner.runSchematic('ngrx-store', args, Tree.empty());
   });
