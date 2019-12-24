@@ -23,3 +23,18 @@ $ yarn ng-schematics ngrx-store --name features/store/hello
 ```bash
 $ yarn ng-schematics ngrx-store --name features/store/hello --project other-app
 ```
+
+# Development
+
+## build and use
+
+```bash
+$ yarn build
+$ yarn schematics .:ngrx-store --name features/store/hello --debug false
+```
+
+## test
+
+```bash
+$ yarn test
+```
