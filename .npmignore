@@ -1,3 +1,8 @@
 # Ignores TypeScript files, but keeps definitions.
 *.ts
 !*.d.ts
+
+yarn-error.log
+.prettierignore
+.prettierrc.json
+.tsconfig.json
