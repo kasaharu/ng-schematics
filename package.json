@@ -6,7 +6,7 @@
     "build": "tsc -p tsconfig.json",
     "test": "yarn build && jasmine src/**/*.spec.js",
     "prettier": "prettier --write './**/*.ts'",
-    "prepublish": "yarn build && npm pack",
+    "prepublishOnly": "yarn build && npm pack",
     "publish": "npm publish --access=public ./kasaharu-ng-schematics*.tgz"
   },
   "keywords": [
