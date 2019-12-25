@@ -23,12 +23,7 @@ export function ngRxStore(options: NgRxStoreSchema): Rule {
     }
 
     // NOTE: 渡された name がパス付きになっていた場合パス部分を path として変換し最後の名前を name に残す
-    const splitedName = options.name.split('/');
-    const hasPathInName = splitedName.length >= 2;
-    const lastIndex = splitedName.length - 1;
-
-    const targetName = !hasPathInName ? options.name : splitedName[lastIndex];
-    const targetPath = !hasPathInName ? options.path : `${options.path}/${splitedName.filter((_, index) => index !== lastIndex).join('/')}`;
+    const [targetName, targetPath] = getAdjustNameAndPath(options.name, options.path);
 
     const templateSource = apply(url('./files'), [
       applyTemplates({
@@ -70,4 +65,15 @@ function getWorkspaceForTestEnvironment(): experimental.workspace.WorkspaceSchem
     defaultProject: 'ng-schematics',
     version: 1,
   };
+}
+
+function getAdjustNameAndPath(originalName: string, originalPath: string): string[] {
+  const splitedName = originalName.split('/');
+  const hasPathInName = splitedName.length >= 2;
+  const lastIndex = splitedName.length - 1;
+
+  const adjustName = !hasPathInName ? originalName : splitedName[lastIndex];
+  const adjustPath = !hasPathInName ? originalPath : `${originalPath}/${splitedName.filter((_, index) => index !== lastIndex).join('/')}`;
+
+  return [adjustName, adjustPath];
 }
