@@ -44,12 +44,7 @@ function getWorkspace(tree: Tree): experimental.workspace.WorkspaceSchema {
 function getWorkspaceForTestEnvironment(): experimental.workspace.WorkspaceSchema {
   return {
     projects: {
-      'ng-schematics': {
-        projectType: 'application',
-        sourceRoot: 'src',
-        root: '',
-        prefix: 'app',
-      },
+      'ng-schematics': { projectType: 'application', sourceRoot: 'src', root: '', prefix: 'app' },
     },
     defaultProject: 'ng-schematics',
     version: 1,
