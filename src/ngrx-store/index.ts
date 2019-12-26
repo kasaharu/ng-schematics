@@ -13,9 +13,7 @@ export function ngRxStore(options: NgRxStoreSchema): Rule {
     }
 
     const projectName = options.project as string;
-
     const project = workspace.projects[projectName];
-
     const projectType = project.projectType === 'application' ? 'app' : 'lib';
 
     if (options.path === undefined) {
