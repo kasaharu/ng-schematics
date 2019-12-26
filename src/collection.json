@@ -6,6 +6,11 @@
       "description": "Generate a store in the project",
       "factory": "./ngrx-store/index#ngRxStore",
       "schema": "./ngrx-store/schema.json"
+    },
+    "user-defined": {
+      "description": "Generate the user defined files in the project",
+      "factory": "./user-defined/index#genarate",
+      "schema": "./user-defined/schema.json"
     }
   }
 }
