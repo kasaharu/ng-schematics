@@ -5,7 +5,7 @@ const { execSync } = require('child_process');
 
 const args = process.argv.slice(2);
 const [type, ...options] = args;
-if (type !== 'ngrx-store') {
+if (type !== 'ngrx-store' && type !== 'user-defined') {
   console.error('Cannot find this type.');
   return;
 }
