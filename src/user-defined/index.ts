@@ -23,7 +23,10 @@ export function genarate(options: NgRxStoreSchema): Rule {
     // NOTE: 渡された name がパス付きになっていた場合パス部分を path として変換し最後の名前を name に残す
     const [targetName, targetPath] = getAdjustNameAndPath(options.name, options.path);
 
-    const templateSource = apply(url('./files'), [applyTemplates({ ...strings, name: targetName }), move(normalize(targetPath as string))]);
+    const templateSource = apply(url(`./files/${options.type}`), [
+      applyTemplates({ ...strings, name: targetName }),
+      move(normalize(targetPath as string)),
+    ]);
     return chain([mergeWith(templateSource)]);
   };
 }
