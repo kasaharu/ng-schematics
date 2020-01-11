@@ -20,7 +20,7 @@ export const initialState: State = {
 };
 
 // NOTE: Actions
-export const saveHelloWorld = createAction('[HelloWorld] save', props<{ helloWorld: any }>);
+export const saveHelloWorld = createAction('[HelloWorld] save', props<{ helloWorld: any }>());
 
 export const actions = { saveHelloWorld };
 const actionsUnion = union(actions);

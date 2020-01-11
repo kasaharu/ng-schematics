@@ -10,7 +10,7 @@ export const initialState: State = {
 };
 
 // NOTE: Actions
-export const save<%= classify(name) %> = createAction('[<%= classify(name) %>] save', props<{ <%= camelize(name) %>: any }>);
+export const save<%= classify(name) %> = createAction('[<%= classify(name) %>] save', props<{ <%= camelize(name) %>: any }>());
 
 export const actions = { save<%= classify(name) %> };
 const actionsUnion = union(actions);
