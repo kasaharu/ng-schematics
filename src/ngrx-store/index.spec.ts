@@ -33,7 +33,8 @@ export default function reducer(state: State, action: typeof actionsUnion): Stat
 }
 
 // NOTE: Selectors
-export const featureName = 'helloWorld';`;
+export const featureName = 'helloWorld';
+`;
 
 const generatedSpecFile = `import reducer, { actions, State } from './hello-world.store';
 
@@ -45,7 +46,8 @@ describe('helloWorld reducer', () => {
 
     expect(result).toEqual({ helloWorld: updatedState });
   });
-});`;
+});
+`;
 
 describe('ngrx-store', () => {
   let runner: SchematicTestRunner;
