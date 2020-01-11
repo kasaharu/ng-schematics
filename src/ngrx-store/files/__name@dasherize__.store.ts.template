@@ -1,4 +1,4 @@
-import { createAction, createReducer, on, union } from '@ngrx/store';
+import { createAction, createReducer, on, props, union } from '@ngrx/store';
 
 // NOTE: State
 export interface State {
@@ -10,13 +10,13 @@ export const initialState: State = {
 };
 
 // NOTE: Actions
-export const save<%= classify(name) %> = createAction('[<%= classify(name) %>] save', (payload: any) => ({ payload }));
+export const save<%= classify(name) %> = createAction('[<%= classify(name) %>] save', props<{ <%= camelize(name) %>: any }>);
 
 export const actions = { save<%= classify(name) %> };
 const actionsUnion = union(actions);
 
 // NOTE: Reducer
-const <%= camelize(name) %>Reducer = createReducer(initialState, on(save<%= classify(name) %>, (state, action) => ({ ...state, <%= camelize(name) %>: action.payload })));
+const <%= camelize(name) %>Reducer = createReducer(initialState, on(save<%= classify(name) %>, (state, { <%= camelize(name) %> }) => ({ ...state, <%= camelize(name) %> })));
 
 export default function reducer(state: State, action: typeof actionsUnion): State {
   return <%= camelize(name) %>Reducer(state, action);

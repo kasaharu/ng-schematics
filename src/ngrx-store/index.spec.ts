@@ -8,7 +8,7 @@ const fileName = 'hello-world';
 const generatedFileName = '/src/app/hello-world.store.ts';
 const generatedSpecFileName = '/src/app/hello-world.store.spec.ts';
 
-const generatedFile = `import { createAction, createReducer, on, union } from '@ngrx/store';
+const generatedFile = `import { createAction, createReducer, on, props, union } from '@ngrx/store';
 
 // NOTE: State
 export interface State {
@@ -20,13 +20,13 @@ export const initialState: State = {
 };
 
 // NOTE: Actions
-export const saveHelloWorld = createAction('[HelloWorld] save', (payload: any) => ({ payload }));
+export const saveHelloWorld = createAction('[HelloWorld] save', props<{ helloWorld: any }>);
 
 export const actions = { saveHelloWorld };
 const actionsUnion = union(actions);
 
 // NOTE: Reducer
-const helloWorldReducer = createReducer(initialState, on(saveHelloWorld, (state, action) => ({ ...state, helloWorld: action.payload })));
+const helloWorldReducer = createReducer(initialState, on(saveHelloWorld, (state, { helloWorld }) => ({ ...state, helloWorld })));
 
 export default function reducer(state: State, action: typeof actionsUnion): State {
   return helloWorldReducer(state, action);
