@@ -14,8 +14,8 @@
     },
     "query": {
       "description": "Generate a query in the project",
-      "factory": "./usecase/index#generate",
-      "schema": "./usecase/schema.json"
+      "factory": "./query/index#generate",
+      "schema": "./query/schema.json"
     },
     "user-defined": {
       "description": "Generate the user defined files in the project",
