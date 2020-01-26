@@ -17,6 +17,11 @@
       "factory": "./query/index#generate",
       "schema": "./query/schema.json"
     },
+    "repository": {
+      "description": "Generate a repository in the project",
+      "factory": "./repository/index#generate",
+      "schema": "./repository/schema.json"
+    },
     "user-defined": {
       "description": "Generate the user defined files in the project",
       "factory": "./user-defined/index#genarate",
