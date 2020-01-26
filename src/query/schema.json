@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "SchematicsUsecase",
+  "title": "Usecase Schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "The name of the usecase.",
+      "type": "string"
+    },
+    "path": {
+      "type": "string",
+      "format": "path",
+      "description": "The path to create the usecase.",
+      "visible": false
+    },
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "env": {
+      "type": "string",
+      "description": "environment"
+    }
+  },
+  "required": ["name"]
+}
