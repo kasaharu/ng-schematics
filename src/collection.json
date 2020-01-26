@@ -7,6 +7,11 @@
       "factory": "./ngrx-store/index#ngRxStore",
       "schema": "./ngrx-store/schema.json"
     },
+    "usecase": {
+      "description": "Generate a usecase in the project",
+      "factory": "./usecase/index#generate",
+      "schema": "./usecase/schema.json"
+    },
     "user-defined": {
       "description": "Generate the user defined files in the project",
       "factory": "./user-defined/index#genarate",
