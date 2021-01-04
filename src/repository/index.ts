@@ -1,12 +1,12 @@
-import { experimental, normalize, strings } from '@angular-devkit/core';
+import { normalize, strings } from '@angular-devkit/core';
 import { apply, applyTemplates, chain, mergeWith, move, Rule, SchematicsException, Tree, url } from '@angular-devkit/schematics';
+import { ProjectType, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
 import { Schema as RepositorySchema } from './schema';
 
 export function generate(options: RepositorySchema): Rule {
   return (tree: Tree) => {
     // parse workspace string into JSON object
-    const workspace: experimental.workspace.WorkspaceSchema =
-      options.env === 'test' ? getWorkspaceForTestEnvironment() : getWorkspace(tree);
+    const workspace: WorkspaceSchema = options.env === 'test' ? getWorkspaceForTestEnvironment() : getWorkspace(tree);
 
     if (!options.project) {
       options.project = workspace.defaultProject;
@@ -28,7 +28,7 @@ export function generate(options: RepositorySchema): Rule {
   };
 }
 
-function getWorkspace(tree: Tree): experimental.workspace.WorkspaceSchema {
+function getWorkspace(tree: Tree): WorkspaceSchema {
   const workspaceConfig = tree.read('/angular.json');
   if (!workspaceConfig) {
     throw new SchematicsException('Could not find Angular workspace configuration');
@@ -41,10 +41,10 @@ function getWorkspace(tree: Tree): experimental.workspace.WorkspaceSchema {
   return JSON.parse(workspaceContent);
 }
 
-function getWorkspaceForTestEnvironment(): experimental.workspace.WorkspaceSchema {
+function getWorkspaceForTestEnvironment(): WorkspaceSchema {
   return {
     projects: {
-      'ng-schematics': { projectType: 'application', sourceRoot: 'src', root: '', prefix: 'app' },
+      'ng-schematics': { projectType: ProjectType.Application, sourceRoot: 'src', root: '', prefix: 'app' },
     },
     defaultProject: 'ng-schematics',
     version: 1,
