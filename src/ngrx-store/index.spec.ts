@@ -53,10 +53,10 @@ describe('ngrx-store', () => {
   let runner: SchematicTestRunner;
   let tree: UnitTestTree;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     const args = { name: fileName, env: 'test' };
     runner = new SchematicTestRunner('schematics', collectionPath);
-    tree = runner.runSchematic('ngrx-store', args, Tree.empty());
+    tree = await runner.runSchematicAsync('ngrx-store', args, Tree.empty()).toPromise();
   });
 
   it('生成されるファイル名の確認', () => {
