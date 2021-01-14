@@ -1,20 +1,43 @@
-import { normalize, strings } from '@angular-devkit/core';
+import { normalize, strings, virtualFs, workspaces } from '@angular-devkit/core';
 import { apply, applyTemplates, chain, mergeWith, move, Rule, SchematicsException, Tree, url } from '@angular-devkit/schematics';
-import { ProjectType, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
 import { Schema as NgRxStoreSchema } from './schema';
 
+export function createHost(tree: Tree): workspaces.WorkspaceHost {
+  return {
+    async readFile(path: string): Promise<string> {
+      const data = tree.read(path);
+      if (!data) {
+        throw new SchematicsException('File not found.');
+      }
+      return virtualFs.fileBufferToString(data);
+    },
+    async writeFile(path: string, data: string): Promise<void> {
+      return tree.overwrite(path, data);
+    },
+    async isDirectory(path: string): Promise<boolean> {
+      return !tree.exists(path) && tree.getDir(path).subfiles.length > 0;
+    },
+    async isFile(path: string): Promise<boolean> {
+      return tree.exists(path);
+    },
+  };
+}
+
 export function ngRxStore(options: NgRxStoreSchema): Rule {
-  return (tree: Tree) => {
-    // parse workspace string into JSON object
-    const workspace: WorkspaceSchema = options.env === 'test' ? getWorkspaceForTestEnvironment() : getWorkspace(tree);
+  return async (tree: Tree) => {
+    const host = createHost(tree);
+    const { workspace } = await workspaces.readWorkspace('/', host);
 
     if (!options.project) {
-      options.project = workspace.defaultProject;
+      options.project = workspace.extensions['defaultProject'] as string;
     }
 
-    const projectName = options.project as string;
-    const project = workspace.projects[projectName];
-    const projectType = project.projectType === 'application' ? 'app' : 'lib';
+    const project = workspace.projects.get(options.project);
+    if (!project) {
+      throw new SchematicsException(`Invalid project name: ${options.project}`);
+    }
+
+    const projectType = project.extensions['projectType'] === 'application' ? 'app' : 'lib';
 
     if (options.path === undefined) {
       options.path = `${project.sourceRoot}/${projectType}`;
@@ -25,29 +48,6 @@ export function ngRxStore(options: NgRxStoreSchema): Rule {
 
     const templateSource = apply(url('./files'), [applyTemplates({ ...strings, name: targetName }), move(normalize(targetPath as string))]);
     return chain([mergeWith(templateSource)]);
-  };
-}
-
-function getWorkspace(tree: Tree): WorkspaceSchema {
-  const workspaceConfig = tree.read('/angular.json');
-  if (!workspaceConfig) {
-    throw new SchematicsException('Could not find Angular workspace configuration');
-  }
-
-  // convert workspace to string
-  const workspaceContent = workspaceConfig.toString();
-
-  // parse workspace string into JSON object
-  return JSON.parse(workspaceContent);
-}
-
-function getWorkspaceForTestEnvironment(): WorkspaceSchema {
-  return {
-    projects: {
-      'ng-schematics': { projectType: ProjectType.Application, sourceRoot: 'src', root: '', prefix: 'app' },
-    },
-    defaultProject: 'ng-schematics',
-    version: 1,
   };
 }
 
