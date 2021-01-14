@@ -1,8 +1,10 @@
 {
+  "version": 1,
   "projects": {
     "ng-schematics": {
       "projectType": "application",
-      "sourceRoot": "src"
+      "sourceRoot": "src",
+      "prefix": "app"
     }
   },
   "defaultProject": "ng-schematics"
