@@ -1,8 +1,8 @@
 import { normalize, strings, workspaces } from '@angular-devkit/core';
 import { apply, applyTemplates, chain, mergeWith, move, Rule, SchematicsException, Tree, url } from '@angular-devkit/schematics';
 import { createHost } from '../utilities/create-host';
+import { detectNameAndPath } from '../utilities/detect-name-and-path';
 import { Schema as NgRxStoreSchema } from './schema';
-
 
 export function ngRxStore(options: NgRxStoreSchema): Rule {
   return async (tree: Tree) => {
@@ -25,20 +25,9 @@ export function ngRxStore(options: NgRxStoreSchema): Rule {
     }
 
     // NOTE: 渡された name がパス付きになっていた場合パス部分を path として変換し最後の名前を name に残す
-    const [targetName, targetPath] = getAdjustNameAndPath(options.name, options.path);
+    const { name, path } = detectNameAndPath(options.name, options.path);
 
-    const templateSource = apply(url('./files'), [applyTemplates({ ...strings, name: targetName }), move(normalize(targetPath as string))]);
+    const templateSource = apply(url('./files'), [applyTemplates({ ...strings, name  }), move(normalize(path))]);
     return chain([mergeWith(templateSource)]);
   };
-}
-
-function getAdjustNameAndPath(originalName: string, originalPath: string): string[] {
-  const splitedName = originalName.split('/');
-  const hasPathInName = splitedName.length >= 2;
-  const lastIndex = splitedName.length - 1;
-
-  const adjustName = !hasPathInName ? originalName : splitedName[lastIndex];
-  const adjustPath = !hasPathInName ? originalPath : `${originalPath}/${splitedName.filter((_, index) => index !== lastIndex).join('/')}`;
-
-  return [adjustName, adjustPath];
 }
