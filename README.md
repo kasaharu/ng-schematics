@@ -7,9 +7,6 @@
 ## Install
 
 ```bash
-// dependency
-$ yarn add @angular-devkit/schematics-cli -D
-
 $ yarn add @kasaharu/ng-schematics -D
 ```
 
