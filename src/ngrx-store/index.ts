@@ -1,27 +1,8 @@
-import { normalize, strings, virtualFs, workspaces } from '@angular-devkit/core';
+import { normalize, strings, workspaces } from '@angular-devkit/core';
 import { apply, applyTemplates, chain, mergeWith, move, Rule, SchematicsException, Tree, url } from '@angular-devkit/schematics';
+import { createHost } from '../utilities/create-host';
 import { Schema as NgRxStoreSchema } from './schema';
 
-export function createHost(tree: Tree): workspaces.WorkspaceHost {
-  return {
-    async readFile(path: string): Promise<string> {
-      const data = tree.read(path);
-      if (!data) {
-        throw new SchematicsException('File not found.');
-      }
-      return virtualFs.fileBufferToString(data);
-    },
-    async writeFile(path: string, data: string): Promise<void> {
-      return tree.overwrite(path, data);
-    },
-    async isDirectory(path: string): Promise<boolean> {
-      return !tree.exists(path) && tree.getDir(path).subfiles.length > 0;
-    },
-    async isFile(path: string): Promise<boolean> {
-      return tree.exists(path);
-    },
-  };
-}
 
 export function ngRxStore(options: NgRxStoreSchema): Rule {
   return async (tree: Tree) => {
