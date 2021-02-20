@@ -1,17 +1,17 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "SchematicsRepository",
-  "title": "Repository Schema",
+  "id": "SchematicsGateway",
+  "title": "Gateway Schema",
   "type": "object",
   "properties": {
     "name": {
-      "description": "The name of the repository.",
+      "description": "The name of the gateway.",
       "type": "string"
     },
     "path": {
       "type": "string",
       "format": "path",
-      "description": "The path to create the repository.",
+      "description": "The path to create the gateway.",
       "visible": false
     },
     "project": {

@@ -17,10 +17,10 @@
       "factory": "./query/index#generate",
       "schema": "./query/schema.json"
     },
-    "repository": {
-      "description": "Generate a repository in the project",
-      "factory": "./repository/index#generate",
-      "schema": "./repository/schema.json"
+    "gateway": {
+      "description": "Generate a gateway in the project",
+      "factory": "./gateway/index#generate",
+      "schema": "./gateway/schema.json"
     }
   }
 }
