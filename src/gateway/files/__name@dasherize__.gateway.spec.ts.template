@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { <%= classify(name) %>Gateway } from './<%= dasherize(name) %>.gateway';
 
 describe('<%= classify(name) %>Gateway', () => {
