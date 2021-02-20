@@ -1,8 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class <%= classify(name) %>Gateway {
-  constructor() {}
+  constructor(private readonly _http: HttpClient) {}
+
+  get(): Observable<any> {
+    return this._http.get<any>('');
+  }
 }
