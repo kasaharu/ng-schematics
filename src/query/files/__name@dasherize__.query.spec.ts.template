@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { <%= classify(name) %>Query } from './<%= dasherize(name) %>.query';
 
 describe('<%= classify(name) %>Query', () => {
