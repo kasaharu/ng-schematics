@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "SchematicsUsecase",
+  "$id": "SchematicsUsecase",
   "title": "Usecase Schema",
   "type": "object",
   "properties": {

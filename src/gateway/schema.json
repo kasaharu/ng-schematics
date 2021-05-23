@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "SchematicsGateway",
+  "$id": "SchematicsGateway",
   "title": "Gateway Schema",
   "type": "object",
   "properties": {

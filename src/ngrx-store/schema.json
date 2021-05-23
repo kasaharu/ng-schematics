@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "SchematicsNgRxStore",
+  "$id": "SchematicsNgRxStore",
   "title": "NgRx Store Schema",
   "type": "object",
   "properties": {
