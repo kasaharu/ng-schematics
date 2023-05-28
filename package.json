@@ -29,6 +29,6 @@
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "jasmine": "^3.5.0",
-    "prettier": "2.2.1"
+    "prettier": "2.8.8"
   }
 }
