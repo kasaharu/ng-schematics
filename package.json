@@ -19,10 +19,10 @@
     "ng-schematics": "./bin/ng-schematics.js"
   },
   "dependencies": {
-    "@angular-devkit/core": "^13.0.2",
-    "@angular-devkit/schematics": "^13.0.2",
-    "@angular-devkit/schematics-cli": "^13.0.2",
-    "@schematics/angular": "^13.0.2",
+    "@angular-devkit/core": "^16.0.0",
+    "@angular-devkit/schematics": "^16.0.0",
+    "@angular-devkit/schematics-cli": "^16.0.0",
+    "@schematics/angular": "^16.0.0",
     "typescript": "~4.4.3"
   },
   "devDependencies": {
